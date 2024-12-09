@@ -12,13 +12,12 @@
 	/>
 </svelte:head>
 
-<div class="bg-[#090D15]">
-	{@render children()}
-</div>
+{@render children()}
 
 <style>
 	:global(body) {
 		font-family: 'Inter', sans-serif;
 		font-optical-sizing: auto;
+		background-color: #090d15;
 	}
 </style>
