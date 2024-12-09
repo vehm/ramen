@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 
-	import { SendHorizontal } from 'lucide-svelte';
+	import { Brain, BrainCircuit, SendHorizontal } from 'lucide-svelte';
 
 	type Props = {
 		input: string;
@@ -20,16 +20,18 @@
 		{placeholder}
 		bind:value={input}
 	/>
-	{#if input}
-		<div class="ms-4" transition:slide={{ axis: 'x' }}>
-			<button
-				type="submit"
-				class="flex gap-2 text-nowrap rounded-full bg-[#FA6E81] p-4 font-semibold text-[#090D15] disabled:cursor-not-allowed disabled:bg-[#FA6E81]/50 md:px-8"
-				disabled={!input || isLoading}
-				transition:slide={{ axis: 'x', duration: 200 }}
-			>
-				<SendHorizontal />
-			</button>
-		</div>
-	{/if}
+	<button
+		type="submit"
+		class="ms-4 flex gap-2 text-nowrap rounded-full p-4 font-semibold transition-all disabled:cursor-not-allowed disabled:bg-opacity-50 md:px-8 {isLoading
+			? 'bg-[#10182B] text-white'
+			: 'bg-[#FA6E81] text-[#090D15]'}"
+		disabled={!input || isLoading}
+		transition:slide={{ axis: 'x', duration: 200 }}
+	>
+		{#if isLoading}
+			<Brain class="animate-pulse" />
+		{:else}
+			<SendHorizontal />
+		{/if}
+	</button>
 </form>
