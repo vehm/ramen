@@ -3,7 +3,7 @@
 
 	import { ChatForm, ChatMessageList, Navbar, WelcomeCard } from '$lib/components';
 
-	const { input, handleSubmit, messages, isLoading } = useChat();
+	const { input, handleSubmit, messages, isLoading, stop } = useChat();
 </script>
 
 <svelte:head>
@@ -25,7 +25,7 @@
 				<Navbar />
 				<ChatMessageList messages={$messages} />
 			{/if}
-			<ChatForm bind:input={$input} {handleSubmit} isLoading={$isLoading} />
+			<ChatForm bind:input={$input} {handleSubmit} handleStop={stop} isLoading={$isLoading} />
 		</div>
 	</div>
 </main>

@@ -1,15 +1,14 @@
 <script lang="ts">
-	import { slide } from 'svelte/transition';
-
-	import { Brain, BrainCircuit, SendHorizontal } from 'lucide-svelte';
+	import { Brain, Pause, SendHorizontal } from 'lucide-svelte';
 
 	type Props = {
 		input: string;
 		handleSubmit: (e: Event) => void;
+		handleStop: () => void;
 		isLoading?: boolean;
 	};
 
-	let { input = $bindable(), handleSubmit, isLoading = false }: Props = $props();
+	let { input = $bindable(), handleSubmit, handleStop, isLoading = false }: Props = $props();
 
 	const placeholder = 'Have a question for me?';
 </script>
@@ -20,18 +19,24 @@
 		{placeholder}
 		bind:value={input}
 	/>
-	<button
-		type="submit"
-		class="ms-4 flex gap-2 text-nowrap rounded-full p-4 font-semibold transition-all disabled:cursor-not-allowed disabled:bg-opacity-50 md:px-8 {isLoading
-			? 'bg-[#10182B] text-white'
-			: 'bg-[#FA6E81] text-[#090D15]'}"
-		disabled={!input || isLoading}
-		transition:slide={{ axis: 'x', duration: 200 }}
-	>
-		{#if isLoading}
-			<Brain class="animate-pulse" />
-		{:else}
+	{#if isLoading}
+		<button
+			type="button"
+			onclick={handleStop}
+			title="Stop"
+			class="group ms-4 flex gap-2 text-nowrap rounded-full bg-[#10182B] bg-opacity-50 p-4 font-semibold text-white transition-all hover:bg-opacity-100 disabled:bg-opacity-50 md:px-8"
+		>
+			<Pause class="hidden group-hover:block" />
+			<Brain class="animate-pulse group-hover:hidden" />
+		</button>
+	{:else}
+		<button
+			type="submit"
+			title="Send"
+			class="ms-4 flex gap-2 text-nowrap rounded-full bg-[#FA6E81] p-4 font-semibold text-[#090D15] transition-all disabled:bg-opacity-50 md:px-8"
+			disabled={!input || isLoading}
+		>
 			<SendHorizontal />
-		{/if}
-	</button>
+		</button>
+	{/if}
 </form>
