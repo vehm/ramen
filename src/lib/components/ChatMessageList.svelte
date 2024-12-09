@@ -1,6 +1,8 @@
 <script lang="ts">
 	import type { Message } from 'ai';
 
+	import { Pin, PinOff } from 'lucide-svelte';
+
 	import { ChatMessage } from '.';
 
 	type Props = {
@@ -9,7 +11,7 @@
 
 	let { messages }: Props = $props();
 
-	let stayScrolled = $state(false);
+	let stayScrolled = $state(true);
 
 	let scrollToDiv: HTMLDivElement;
 	const scrollToBottom = () => {
@@ -28,12 +30,17 @@
 	{#each messages as { role, content }}
 		<ChatMessage {role} {content} />
 	{/each}
-	<div bind:this={scrollToDiv}>
+	<div bind:this={scrollToDiv} class="flex justify-end">
 		<button
-			class="w-full rounded-full border border-[#8AA1A8]/50 p-1 text-center text-sm text-white/50 transition-colors hover:border-[#8AA1A8]/75"
+			title={stayScrolled ? 'Unpin Scroll' : 'Pin Scroll'}
 			onclick={() => (stayScrolled = !stayScrolled)}
+			class="flex items-center gap-2 rounded-full p-2 text-center text-sm text-white/50 transition-colors hover:text-white/75"
 		>
-			{stayScrolled ? 'Stop Scrolling' : 'Stay Scrolled'}
+			{#if stayScrolled}
+				Unpin Scroll <PinOff />
+			{:else}
+				Pin Scroll <Pin />
+			{/if}
 		</button>
 	</div>
 </ul>
