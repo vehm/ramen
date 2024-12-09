@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { slide } from 'svelte/transition';
 
+	import { SendHorizontal } from 'lucide-svelte';
+
 	type Props = {
 		input: string;
 		handleSubmit: (e: Event) => void;
@@ -22,12 +24,11 @@
 		<div class="ms-4" transition:slide={{ axis: 'x' }}>
 			<button
 				type="submit"
-				class="text-nowrap rounded-full bg-[#FA6E81] p-4 font-semibold text-[#090D15] disabled:cursor-not-allowed disabled:bg-[#FA6E81]/50 md:min-w-32"
+				class="flex gap-2 text-nowrap rounded-full bg-[#FA6E81] p-4 font-semibold text-[#090D15] disabled:cursor-not-allowed disabled:bg-[#FA6E81]/50 md:px-8"
 				disabled={!input || isLoading}
 				transition:slide={{ axis: 'x', duration: 200 }}
 			>
-				<span class="hidden md:block">{isLoading ? 'Loading...' : 'Send'}</span>
-				<span class="block md:hidden">{'-->'}</span>
+				<SendHorizontal />
 			</button>
 		</div>
 	{/if}
