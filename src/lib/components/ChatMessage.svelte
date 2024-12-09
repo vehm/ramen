@@ -11,13 +11,6 @@
 </script>
 
 <li class="flex gap-2" transition:slide>
-	<div>
-		<div
-			class="h-6 w-6 rounded-full"
-			class:bg-[#8AA1A8]={role === 'user'}
-			class:bg-[#FA6E81]={role === 'assistant'}
-		></div>
-	</div>
 	<div class="flex flex-col gap-2">
 		<span
 			class="font-bold capitalize"
