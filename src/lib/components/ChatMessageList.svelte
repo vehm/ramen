@@ -32,7 +32,9 @@
 	{/each}
 	<div bind:this={scrollToDiv} class="flex justify-end">
 		<button
-			title={stayScrolled ? 'Unpin Scroll' : 'Pin Scroll'}
+			title={stayScrolled
+				? 'Stop auto-scrolling to incoming messages'
+				: 'Auto-scroll to incoming messages'}
 			onclick={() => (stayScrolled = !stayScrolled)}
 			class="flex items-center gap-2 rounded-full p-2 text-center text-sm text-white/50 transition-colors hover:text-white/75"
 		>
