@@ -36,6 +36,7 @@
 		"@ai-sdk/svelte": "^1.0.5",
 		"@tailwindcss/typography": "^0.5.15",
 		"ai": "^4.0.13",
+		"lucide-svelte": "^0.468.0",
 		"marked": "^15.0.3"
 	}
 }
