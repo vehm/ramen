@@ -1,14 +1,19 @@
 <script lang="ts">
-	import TextSlideshow from './TextSlideshow.svelte';
+	import RamenMiniLogo from '$lib/assets/ramen_mini.svg';
+
+	import { TextSlideshow } from '.';
 </script>
 
 <div class="flex flex-col gap-2 px-4 text-center md:text-start">
-	<h1 class="text-4xl font-light text-white">
-		Hi there, I'm <TextSlideshow
-			messages={['Ramen', 'Andrew']}
-			interval={6000}
-			class="font-bold text-[#FA6E81]"
-		/>!
+	<h1 class="flex items-end gap-4 text-4xl font-light text-white">
+		<img src={RamenMiniLogo} alt="Ramen Logo" class="h-12 w-12" />
+		<span>
+			Hi there, I'm <TextSlideshow
+				messages={['Ramen', 'Andrew']}
+				interval={6000}
+				class="font-bold text-[#FA6E81]"
+			/>!
+		</span>
 	</h1>
 	<p class="text-white/75">
 		This is a chatbot with knowledge on my <TextSlideshow
