@@ -6,6 +6,12 @@
 	const { input, handleSubmit, messages, isLoading } = useChat();
 </script>
 
+<svelte:head>
+	<title>
+		{$isLoading ? 'Thinking...' : $messages.length > 0 ? 'Having a chat!' : "Hi there, let's chat!"}
+	</title>
+</svelte:head>
+
 <main class="h-dvh max-h-dvh overflow-auto">
 	<div class="flex h-full items-center justify-center">
 		<div class="flex h-full w-full max-w-3xl flex-col justify-center gap-4 pb-4">
