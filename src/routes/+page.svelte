@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { useChat } from '@ai-sdk/svelte';
 
-	import { ChatForm, ChatMessageList, WelcomeCard } from '$lib/components';
+	import { ChatForm, ChatMessageList, Navbar, WelcomeCard } from '$lib/components';
 
 	const { input, handleSubmit, messages, isLoading } = useChat();
 </script>
@@ -22,7 +22,7 @@
 			{#if $messages.length === 0}
 				<WelcomeCard />
 			{:else}
-				<div class="p-4 text-center font-bold text-white">Testing</div>
+				<Navbar />
 				<ChatMessageList messages={$messages} />
 			{/if}
 			<ChatForm bind:input={$input} {handleSubmit} isLoading={$isLoading} />
