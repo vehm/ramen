@@ -5,6 +5,10 @@ import type { RequestHandler } from './$types';
 import { env as privateEnv } from '$env/dynamic/private';
 import { env as publicEnv } from '$env/dynamic/public';
 
+export const config = {
+	runtime: 'edge'
+};
+
 const openai = createOpenAI({
 	apiKey: privateEnv.OPENAI_API_KEY ?? ''
 });
