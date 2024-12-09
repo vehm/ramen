@@ -8,7 +8,11 @@
 
 <svelte:head>
 	<title>
-		{$isLoading ? 'Thinking...' : $messages.length > 0 ? 'Having a chat!' : "Hi there, let's chat!"}
+		{$isLoading
+			? 'Thinking... 🧠'
+			: $messages.length
+				? 'Having a chat! 🍜'
+				: "Hi there, let's chat! 🍜"}
 	</title>
 </svelte:head>
 
