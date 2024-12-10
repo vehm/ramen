@@ -1,8 +1,12 @@
+import type { RequestHandler } from '@sveltejs/kit';
 import { AssistantResponse } from 'ai';
 import OpenAI from 'openai';
 
 import { env as privateEnv } from '$env/dynamic/private';
-import type { RequestHandler } from '@sveltejs/kit';
+
+export const config = {
+	runtime: 'edge'
+};
 
 const openai = new OpenAI({
 	apiKey: privateEnv.OPENAI_API_KEY || ''
