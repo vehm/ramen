@@ -26,7 +26,7 @@
 	});
 </script>
 
-<ul class="flex flex-1 flex-col gap-8 overflow-y-auto px-4">
+<ul class="flex flex-1 flex-col gap-8 overflow-y-auto p-4">
 	{#each messages as { role, content }}
 		<ChatMessage {role} {content} />
 	{/each}
