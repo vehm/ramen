@@ -4,6 +4,10 @@ import OpenAI from 'openai';
 
 import { env as privateEnv } from '$env/dynamic/private';
 
+// Types for `AssistantResponse` type safety
+import type { AssistantStream } from 'openai/lib/AssistantStream.mjs';
+import type { Run } from 'openai/resources/beta/threads/index.mjs';
+
 export const config = {
 	runtime: 'edge'
 };
@@ -13,25 +17,21 @@ const openai = new OpenAI({
 });
 
 export const POST = (async ({ request }) => {
-	// Parse the request body
 	const input: {
 		threadId: string | null;
 		message: string;
 	} = await request.json();
 
-	// Create a thread if needed
 	const threadId = input.threadId ?? (await openai.beta.threads.create({})).id;
 
-	// Add a message to the thread
-	const createdMessage = await openai.beta.threads.messages.create(threadId, {
+	const { id: messageId } = await openai.beta.threads.messages.create(threadId, {
 		role: 'user',
 		content: input.message
 	});
 
 	return AssistantResponse(
-		{ threadId, messageId: createdMessage.id },
-		async ({ forwardStream }) => {
-			// Run the assistant on the thread
+		{ threadId, messageId },
+		async ({ forwardStream }: { forwardStream: (stream: AssistantStream) => Promise<Run> }) => {
 			const runStream = openai.beta.threads.runs.stream(threadId, {
 				assistant_id:
 					privateEnv.ASSISTANT_ID ??
@@ -40,16 +40,14 @@ export const POST = (async ({ request }) => {
 					})()
 			});
 
-			// forward run status would stream message deltas
 			let runResult = await forwardStream(runStream);
 
-			// status can be: queued, in_progress, requires_action, cancelling, cancelled, failed, completed, or expired
 			while (
 				runResult?.status === 'requires_action' &&
 				runResult.required_action?.type === 'submit_tool_outputs'
 			) {
 				const tool_outputs = runResult.required_action.submit_tool_outputs.tool_calls.map(
-					(toolCall: any) => {
+					(toolCall) => {
 						switch (toolCall.function.name) {
 							default:
 								throw new Error(`Unknown tool call function: ${toolCall.function.name}`);
