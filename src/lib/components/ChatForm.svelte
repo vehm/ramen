@@ -13,9 +13,9 @@
 	const placeholder = 'Have a question for me?';
 </script>
 
-<form onsubmit={handleSubmit} class="flex flex-row p-4">
+<form onsubmit={handleSubmit} class="flex p-4">
 	<input
-		class="flex-1 rounded-full border border-[#8AA1A8] bg-[#090D15] p-4 text-white placeholder:text-[#8AA1A8]"
+		class="flex-1 rounded-full border border-[#8AA1A8] bg-[#090D15] p-4 text-white placeholder-[#8AA1A8]"
 		{placeholder}
 		bind:value={input}
 	/>
