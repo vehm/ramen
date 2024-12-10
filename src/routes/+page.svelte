@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { useChat } from '@ai-sdk/svelte';
+	import { useAssistant } from '@ai-sdk/svelte';
 
 	import { ChatForm, ChatMessageList, Navbar, WelcomeCard } from '$lib/components';
 
-	const { input, handleSubmit, messages, isLoading, stop } = useChat();
+	const { input, submitMessage, messages, status, stop } = useAssistant({
+		api: '/api/assistant'
+	});
 </script>
 
 <svelte:head>
 	<title>
-		{$isLoading
-			? 'Thinking... 🧠'
-			: $messages.length
-				? 'Having a chat! 🍜'
-				: "Hi there, let's chat! 🍜"}
+		{$messages.length
+			? $status === 'in_progress'
+				? 'Thinking... 🧠'
+				: 'Having a chat! 🍜'
+			: "Let's have a chat! 🍜"}
 	</title>
 </svelte:head>
 
@@ -25,7 +27,12 @@
 				<Navbar />
 				<ChatMessageList messages={$messages} />
 			{/if}
-			<ChatForm bind:input={$input} {handleSubmit} handleStop={stop} isLoading={$isLoading} />
+			<ChatForm
+				bind:input={$input}
+				handleSubmit={submitMessage}
+				handleStop={stop}
+				isLoading={$status === 'in_progress'}
+			/>
 		</div>
 	</div>
 </main>
