@@ -1,5 +1,5 @@
 <script lang="ts">
-	import RamenMiniLogo from '$lib/assets/ramen_mini.svg';
+	import RamenMiniRounded from '$lib/assets/ramen_mini_rounded.svg';
 
 	import { TextSlideshow } from '.';
 </script>
@@ -8,7 +8,7 @@
 	<h1
 		class="flex flex-col items-center gap-4 text-4xl font-light text-white md:flex-row md:items-end"
 	>
-		<img src={RamenMiniLogo} alt="Ramen Logo" class="h-12 w-12" />
+		<img src={RamenMiniRounded} alt="Ramen Logo" class="h-12 w-12" />
 		<span>
 			Hi there, I'm <TextSlideshow
 				messages={['Ramen', 'Andrew']}
