@@ -29,6 +29,6 @@
 				<span class="w-min text-nowrap text-xs uppercase text-[#FA6E81]">Ramen</span>
 			</span>
 		{/if}
-		<p class="prose prose-invert text-white">{@html marked.parse(content)}</p>
+		<p class="prose prose-invert break-all text-white">{@html marked.parse(content)}</p>
 	</div>
 </li>
