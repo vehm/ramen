@@ -18,7 +18,7 @@
 	</title>
 </svelte:head>
 
-<main class="h-dvh max-h-dvh overflow-auto">
+<main class="h-dvh min-h-dvh overflow-auto">
 	<div class="flex h-full items-center justify-center">
 		<div class="flex h-full w-full max-w-3xl flex-col justify-center">
 			{#if $messages.length === 0}
