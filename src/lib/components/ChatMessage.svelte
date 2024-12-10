@@ -18,12 +18,6 @@
 
 <li class="flex gap-2" transition:slide>
 	<div class="flex flex-col gap-2">
-		<!-- No icon sender option -->
-		<!-- <span
-			class="w-min text-nowrap text-xs uppercase {isUser ? 'text-[#8AA1A8]' : 'text-[#FA6E81]'}"
-		>
-			{isUser ? 'You' : 'Ramen'}
-		</span> -->
 		{#if isUser}
 			<span class="flex items-center gap-2">
 				<User class="h-6 w-6 rounded bg-[#8AA1A8] p-1 text-[#090d15]" />
