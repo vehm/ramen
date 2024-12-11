@@ -9,13 +9,14 @@
 </script>
 
 <svelte:head>
-	<title>
+	<title>Meet Ramen, the digital me! 🍜</title>
+	<!-- <title>
 		{$messages.length
 			? $status === 'in_progress'
 				? 'Thinking... 🧠'
-				: 'Having a chat! 🍜'
-			: "Let's have a chat! 🍜"}
-	</title>
+				: 'Your move! ♟️'
+			: 'Meet Ramen, the digital me! 🍜'}
+	</title> -->
 	<meta
 		name="description"
 		content="Hi, I'm Andrew - but you can call me Ramen! Explore my portfolio through an AI chatbot that knows all about my interests, hobbies, and web developer career!"
