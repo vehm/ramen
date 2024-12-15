@@ -17,7 +17,7 @@
 </script>
 
 <li class="flex gap-2" transition:slide>
-	<div class="flex flex-col gap-2">
+	<div class="flex w-full flex-col gap-2">
 		{#if isUser}
 			<span class="flex items-center gap-2">
 				<User class="h-6 w-6 rounded bg-[#8AA1A8] p-1 text-[#090d15]" />
@@ -29,6 +29,8 @@
 				<span class="w-min text-nowrap text-xs uppercase text-[#FA6E81]">Ramen</span>
 			</span>
 		{/if}
-		<p class="prose prose-invert text-white">{@html marked.parse(content)}</p>
+		<p class="prose prose-invert break-words text-white">
+			{@html marked.parse(content)}
+		</p>
 	</div>
 </li>
